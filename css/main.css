@@ -1,11 +1,17 @@
-* {
+.animater{    
+  -webkit-transition: all 0.3s ease-in-out 0s;
+    -moz-transition: all 0.3s ease-in-out 0s;
+    -o-transition: all 0.3s ease-in-out 0s;
+    -ms-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s; }
+  * {
   padding: 0;
   margin: 0; }
 
 body {
+  font-family: 'Droid Serif', serif;
   width: 100%;
   vertical-align: top;
-  font-family: arial, sans-serif;
   font-size: 1em;
   margin: auto;
   background-color: #FFFFFF;
@@ -44,9 +50,10 @@ article, aside {
   vertical-align: top; }
 
 article {
-  width: 50%;
+  width: 605px;
   margin: 0 auto;
-  border: 1px solid #CCCCCC; }
+  padding-top: 10%;
+}
 
 article p {
   width: 92%;
@@ -61,31 +68,78 @@ footer {
   vertical-align: bottom;
   min-height: 120px; }
 
-.copyright {
-  display: block;
-  font-size: 1.1em;
-  margin-bottom: 1.15em; }
-
 .text-shadow {
   color: #FFFFFF;
   text-shadow: 0px 0px 8px rgba(250, 250, 250, 0.65); }
 
 .align-center {
   text-align: center; }
+}
+img{ max-width: 100%; max-height: 100%; }
+    #contenedorimagen button {position:relative; color: #000; width: 70px; float: right;font-size: 20px; margin-right: 10px;}
+    #contenedorimagen{ position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; display: none; background: rgba(0,0,0,0.5); }
+    #contimgcentra {display: flex; text-align: center; vertical-align: middle; align-items: center; }
+    #cargaimagen{ text-align: center; width: 100%; }
 
-.uno {
-  position: relative; }
+.img{width: 200px; height: 150px;}
+.contenedor{
+  position: relative;
+  display: inline-block;
 
-.imagen {
+}
+.txt-des{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 150px;
+}
 
-	position:relative;
-		}
-		h3
-		{
-			position: relative;
-			bottom:25px;
-			color:#fff;
-			font-weight:bold;
-		}
+.txt-in{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: #fff;
+  background: transparent;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  vertical-align: middle;
+  opacity: 1;
+  line-height: 150px;
+}
+
+.contenedor:hover .txt-des{
+  opacity: 1;
+}
+.contenedor:hover .txt-in{
+  opacity: 0;
+}
+.btn-next{
+    float: right;
+    background: #000;
+    padding: 10px;
+    color: #fff;
+    border-radius: 5px;
+}
+.btn-prev{
+    padding: 10px;
+    color: #000 ;
+    border-radius: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+    article{
+      max-width: 100%;
+    }
+    
+}
+
 
 /*# sourceMappingURL=main.css.map */

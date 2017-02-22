@@ -1,5 +1,6 @@
 var current_page = 1;
 var records_per_page = 6;
+var con_img = [];
 
 var objJson;
 
@@ -39,9 +40,11 @@ function changePage(page)
 
     for (var i = (page-1) * records_per_page; i < (page * records_per_page) && i < objJson.length; i++) {
         //listing_table.innerHTML += objJson[i].title + "<br>";
-        listing_table.innerHTML += '<a href=""><img src="'+objJson[i].image+'" alt="" class="imagen"></a>';
+        con_img.push(objJson[i].image);
+        listing_table.innerHTML += '<div class="contenedor" onclick="ver_imagen('+i+')"><img src="'+objJson[i].image+'" alt="" class="img"><p class="animated txt-des">Texto Descriptivo</p><p class="txt-in">'+objJson[i].title+'</p></div>';
 
     }
+
     page_span.innerHTML = page + "/" + numPages();
 
     if (page == 1) {
@@ -55,6 +58,11 @@ function changePage(page)
     } else {
         btn_next.style.visibility = "visible";
     }
+}
+function ver_imagen(n){
+                $("#cargaimagen").html("<img src='"+con_img[n]+"'>");
+                $("#contenedorimagen").show();
+                $("#contenedorimagen").animateCss('fadeIn');
 }
 
 function numPages()

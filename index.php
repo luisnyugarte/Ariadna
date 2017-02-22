@@ -2,53 +2,82 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-    <title>Test Front</title>
+    <title>gallery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/plugins/CSSPlugin.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/easing/EasePack.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenLite.min.js"></script>
-    <script type="text/javascript" src="js/gallery.js"></script>
-    
-    <script type="text/javascript">
-    window.onload=function(){
-            gallery();
-       TweenMax.from('.uno', .4, {y: 100, opacity: 0});
-        (".uno", 0.5, {scale:0.5, autoAlpha:0}, "uno")
-        TweenMax.from(".uno",2,{top:400, ease:Back.easeOut});
-        TweenLite.set(".uno", {css:{transformPerspective:400, perspective:400, transformStyle:"uno"}});
-    }
-    
-</script>
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="gallery.js"></script>
 </head>
 <body>
 
 <section>
     <article>
-        <div id="listingTable" class="box-images uno"></div>
-        page <span id="page"></span>
-        <a href="javascript:prevPage()" id="btn_prev">Prev</a>
-        <a href="javascript:nextPage()" id="btn_next">Next</a>
+        <div id="listingTable" class="box-images animation wid"></div>
+            <span id="page"></span>
+            <a href="javascript:prevPage()" id="btn_prev" class="btn-prev">Prev</a>
+            <a href="javascript:nextPage()" id="btn_next" class="btn-next">Next Projects</a>
     </article>
 </section>
+   <div id="contenedorimagen" class="animated">
+        <button id="cerrar">X</button>
+        <div id="contimgcentra">
+            <div id="cargaimagen"></div>
+        </div>
+    </div>
 
-<script
-     src="https://code.jquery.com/jquery-1.12.4.min.js"
-     integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-     crossorigin="anonymous">
-</script>
 <script type="text/javascript">
-    $('#btn_next').click(function() {
-      
+$.fn.extend({
+            animateCss: function (animationName, opc = 0) {
+                var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+                this.addClass('animated ' + animationName).one(animationEnd, function() {
+                    $(this).removeClass('animated ' + animationName);
+                    if (opc==1){ $(this).hide(); }
+                });
+            }
+        });
+$(function(){
+            var altoVentana = $(window).height();
+            var anchoVentana = $(window).width();
+            $("#contimgcentra").css({"width":anchoVentana, "height":altoVentana});
+            $("img").click(function(){
+                var urlimg = $(this).attr("src");
+                $("#cargaimagen").html("<img src='"+urlimg+"'>");
+                var aleaTorio = Math.random()*totalEfectos;
+                aleaTorio = parseInt(aleaTorio);
+                var efecto = efectos[aleaTorio];
+                $("#contenedorimagen").show();
+                $("#contenedorimagen").animateCss(efecto);
+            })
+            $("#cerrar").click(function(){
+                $("#contenedorimagen").animateCss('fadeOut', 1);
+                // $("#contenedorimagen").hide();
+            });
+        })
 
-        TweenMax.to(".uno",1,{right:500, delay:0.1});
-        TweenMax.from(".uno",1,{left:500, delay:0.1});
-        tl.to(".uno", 2, {x:500})
-        TweenLite.to(".uno",graph, 2.5, { ease: Power2.easeOut, y: -500 });
+window.onload=function(){
+            gallery();
+
+        $('.animation').animateCss('lightSpeedIn');
+
+        //$(".txt-des").css("line-height", $(".contenedor").height());     
+        
+       /*TweenMax.from('.animation', .4, {y: 100, opacity: 0});
+        (".animation", 0.5, {scale:0.5, autoAlpha:0}, "animation")
+        TweenMax.from(".animation",2,{top:400, ease:Back.easeOut});
+        TweenLite.set(".animation", {css:{transformPerspective:400, perspective:400, transformStyle:"animation"}});*/
+    }
+    $('#btn_next').click(function() {     
+      $('.animation').animateCss('flash');
 });
+    $(".animation").mouseover(function(){
+    $(".img").animateCss('');
+});
+
 </script>
 
 </body>
 </html>
 
-       
+
